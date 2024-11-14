@@ -14,12 +14,11 @@ st.subheader(f'{options} for the next {days} days in {place}')
 
 if place:
     try:
-
         # call the data
         filtered_data = get_data(place, days)
 
         if options == 'Temperature':
-            temperature = [dic['main']['temp'] for dic in filtered_data]
+            temperature = [dic['main']['temp'] / 10 for dic in filtered_data]
             date = [dic['dt_txt'] for dic in filtered_data]
             figure = px.line(x=date, y=temperature,
                              labels={"x": 'Date', 'y': 'Temperature (C)'})
